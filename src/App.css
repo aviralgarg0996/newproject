@@ -26,3 +26,14 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+#btnCreateUser{
+  align-items:flex-end;
+  height: 35px;
+  mix-blend-mode: undefined;
+  border-radius: 3px;
+  background-color: #3c8dbc;
+  color:#ffffff;
+  font-size: 14px;
+  margin: 5px 5px 5px 5px;
+  border:0px;
+}

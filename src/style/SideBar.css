@@ -17,10 +17,10 @@ justify-content: center;
     margin-left: -13px ;
 }
 .sider_container {
-    width: 230px;
+    width: 222px;
     height: 100vh;
     position: fixed;
-    background-color: #ff6666;
+    background-color: #50859b;
   }
   .wrapper {
     /* overflow: auto; */

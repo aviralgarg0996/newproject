@@ -24,7 +24,7 @@ import 'primereact/resources/themes/omega/theme.css';
         <div style={{marginTop:"15px"}}>
           <span id="ButtonSpans">
       
-      <Link to="/admin/createemployee" >  <button id="btnExportCsv" style={{color:"#333333",marginRight:"-800px", backgroundColor: '#99b3ff',fontSize:"20px",marginBottom:"8px"}}>Create Employee</button></Link>
+      <Link to="/admin/user/createemployee" >  <button id="btnCreateUser" >Create Employee</button></Link>
       </span>
       
              <DataTable columnResizeMode="expand" 

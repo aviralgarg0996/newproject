@@ -17,7 +17,7 @@
 .header_container{
     height: 135px;
     width: calc(100vw - 250px);
-    margin-left: 230px;
+    margin-left: 222px;
     position: fixed;
     box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, 0.08);
     

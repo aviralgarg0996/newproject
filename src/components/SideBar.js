@@ -34,17 +34,19 @@ class SideBar extends Component {
         <SubMenu key="1"
                     title={<span>
                         {/* <img src={require("../icons/SideBar/products.png")} alt="user" /> */}
-                        &nbsp;&nbsp;<span>Employee</span></span>}>
+                        <NavLink className="nav-text" to="/admin/user"><span style={{color:'white'}}>Employee</span></NavLink></span>}>
             </SubMenu>
                  
           <SubMenu key="2"
                     title={<span>
                         {/* <img src={require("../icons/SideBar/products.png")} alt="user" /> */}
-                        &nbsp;&nbsp;<span>Survey</span></span>}>
-                        <Menu.Item key="21"><NavLink className="nav-text" to="/home/product">Products</NavLink></Menu.Item>
+                        <NavLink className="nav-text" to="/admin/survey"><span style={{color:'white'}}>Survey</span></NavLink></span>}>
+                        
+                      
+                        {/* <Menu.Item key="21"><NavLink className="nav-text" to="/home/product">Products</NavLink></Menu.Item>
                         <Menu.Item key="22"><NavLink className="nav-text" to="/home/product/categories">Categories</NavLink></Menu.Item>
                         <Menu.Item key="23"><NavLink className="nav-text" to="/home/product/brands">Brands</NavLink></Menu.Item>
-                        <Menu.Item key="24"><NavLink className="nav-text" to="/home/product/suppliers">Suppliers</NavLink></Menu.Item>
+                        <Menu.Item key="24"><NavLink className="nav-text" to="/home/product/suppliers">Suppliers</NavLink></Menu.Item> */}
             </SubMenu>
 
           

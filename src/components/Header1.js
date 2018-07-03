@@ -8,7 +8,7 @@ import axios from "axios";
 import {basepath} from "../utils/Constant";
 
 
- class Header extends Component {
+ class Header1 extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -25,7 +25,7 @@ import {basepath} from "../utils/Constant";
            <div id="headerdiv"></div> 
            <div id="HeaderDiv2">
       <span id="UserList"> 
-      <h2 style={{marginLeft:'10px'}}>Employee </h2>
+      <h2 style={{marginLeft:'10px'}}>Survey Data </h2>
           </span>
       </div>  
       </div>
@@ -38,4 +38,4 @@ const mapStateToProps=(state)=>{
     // state:state,
   }
 }
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(Header1);

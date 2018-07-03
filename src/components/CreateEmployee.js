@@ -32,6 +32,7 @@ import "../style/createemployee.css"
     return (
         <div style={{marginTop:"30px"}}>
    <div id="CreateUserDiv">
+  
   <Row>
       <Col md={{span:3,offset:1}} style={{textAlign:"center"}}> <span id="BrandSpan" className="CreateUserText">Employee Name<span style={{color:'red'}}>*</span></span></Col>
  <Col md={{span:10,offset:1}}><input className="CreateUserField1" type="text" value={this.state.empName} onChange={(e)=>{this.setState({empName:e.target.value})}} maxLength="30"/></Col></Row>
@@ -46,7 +47,32 @@ import "../style/createemployee.css"
  <Row><Col md={{span:3,offset:1}} style={{textAlign:"center"}}> <span id="BrandSpan" className="CreateUserText">Confirm Password<span style={{color:'red'}}>*</span></span></Col>
  <Col md={{span:10,offset:1}}><input className="CreateUserField1" type="password" value={this.state.Confirmpassword} onChange={(e)=>{this.setState({Confirmpassword:e.target.value})}} maxLength="30"/></Col></Row>
  <Row>
-     <Button id="createBtn">Create</Button>
+     <Button id="btnCreateUser" onClick={()=>{
+        console.log("clicked")
+        if(this.state.empName=="")
+        openNotificationWithIcon('warning',"Name",'Enter Employee Name');
+        else  if(this.state.userName=="")
+        openNotificationWithIcon('warning',"Name",'Enter User Name');
+        else  if(this.state.email=="")
+        openNotificationWithIcon('warning',"Email",'Enter Email');
+        else if(this.state.mobile=="")
+        openNotificationWithIcon('warning',"Phone",'Enter Contact No.');
+        else  if(this.state.password=="")
+        openNotificationWithIcon('warning',"Password",'Enter Password');
+        else if(this.state.confirmpassword=="")
+        openNotificationWithIcon('warning',"Password",'Enter Confirm Password');
+        else  if(this.state.password!=this.state.confirmpassword)
+        {
+        openNotificationWithIcon('warning',"Password",'Password Fields not match');
+        this.setState({
+            password:"",
+            confirmpassword:""
+        })
+        }
+        else{
+            console.log("data successs")
+        }
+     }}>Create</Button>
  </Row>
 </div>
    </div>

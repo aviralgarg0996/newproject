@@ -8,11 +8,9 @@ import AdminPanel from '../containers/AdminPanel';
     return (
       <div id="FullDiv1">
         <Router>
-          <div>
-              
+          <div>      
         <Route exact path='/' component={Login}/> 
         <Route path='/admin' component={AdminPanel}/> 
-       
         </div>
         </Router>
       </div>
