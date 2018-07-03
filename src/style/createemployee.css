@@ -1,0 +1,18 @@
+
+.CreateUserField1{
+    width: 60%;
+    height: 41px;
+    border: solid 1px #d2d6de;
+   text-indent: 10px;
+  }
+  #CreateUserDiv{
+    width: 80%;
+    margin: auto;
+    /* border:1px solid red */
+   }
+   #createBtn{
+       margin: 20px;
+      width: 120px;
+      font-size: 20px;
+      border-radius: 7px;
+   }

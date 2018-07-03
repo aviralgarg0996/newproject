@@ -1,0 +1,24 @@
+#headerdiv{
+    height: 50px;
+    background-color:steelblue;
+    width: calc(100vw - 250px);
+    position: fixed;
+}
+#HeaderDiv2{
+    height:84px;
+    width:100%;
+    background: #ffffff;
+    margin-top:51px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: flex-end;
+   
+}
+.header_container{
+    height: 135px;
+    width: calc(100vw - 250px);
+    margin-left: 230px;
+    position: fixed;
+    box-shadow: 0px 1px 4px 0 rgba(0, 0, 0, 0.08);
+    
+}

@@ -1,0 +1,9 @@
+.content_container {
+    width: calc(100vw - 230px);
+    height: calc(100vh - 135px);
+    background-color: #F3F4F8;
+    position: fixed;
+    margin-top: 135px;
+    left: 230px;
+    /* text-align: center; */
+  }
