@@ -63,8 +63,7 @@ filter={true}
   filter={true} 
    style={{width:"90px",textAlign:'center'}} className='CreatedDate'/>  
  
-</DataTable> 
-<h1>Adminfddffdfdf</h1>  
+</DataTable>    
 </div>
              </div>
          <div>
