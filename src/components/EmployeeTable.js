@@ -9,17 +9,35 @@ import {DataTable} from 'primereact/components/datatable/DataTable';
 import {Column} from 'primereact/components/column/Column';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/omega/theme.css';
- export default class EmployeeTable extends Component {
+import { GET_EMPLOYEE_DATA_REQUEST } from '../actions/types';
+ class EmployeeTable extends Component {
+   componentWillMount(){
+     this.props.onRequestData();
+   }
   constructor(props){
     super(props);
     this.state={
       userimage:[],
-      toggle:false
+      toggle:false,
+      page:1,
+      limit:10
     }
   }
   
 
   render() {
+    let employeelist = [];
+    console.log("statetete",this.props.state)
+    if (this.props.state.data.data) {
+      this.props.state.data.data.map((data, key) => {
+        let obj;
+        obj = {
+          ...data,
+          index: key + 1 + (this.state.page - 1) * this.state.limit
+        };
+        employeelist = employeelist.concat(obj);
+      });
+    }
     return (
         <div style={{marginTop:"15px"}}>
           <span id="ButtonSpans">
@@ -30,7 +48,7 @@ import 'primereact/resources/themes/omega/theme.css';
              <DataTable columnResizeMode="expand" 
               resizableColumns={true}
                loadingIcon="fas fa-spinner" 
-               
+               value={employeelist}
                 scrollable={true}>
         <Column field="index"
         header="S.No"
@@ -42,28 +60,57 @@ import 'primereact/resources/themes/omega/theme.css';
        filter={true}
         style={{width:"80px"}} 
         className='BankId'/> 
-        <Column field="picture" 
+
+        <Column field="employeeName" 
        filter={true} 
          header="Emp Name" 
         style={{width:"100px",textAlign:"center"}} 
         className='Image'/>
-        <Column field="bankName" 
+  <Column field="userName" 
+        header="User Name" 
+         filter={true} 
+         style={{width:"90px",textAlign:'center'}} className='ShortName'/>  
+        <Column field="email" 
         header="Email" 
         filter={true}
         style={{width:"200px"}} 
         className='bankName'/>
-        <Column field="bankShortName" 
+
+        <Column field="phoneNo" 
         header="Mobile" 
          filter={true} 
          style={{width:"90px",textAlign:'center'}} className='ShortName'/>  
+
+
+         
+
         <Column field="createdAt" 
         header="Created Date" 
          filter={true} 
-          style={{width:"90px",textAlign:'center'}} className='CreatedDate'/>  
+          style={{width:"170px",textAlign:'center'}} className='CreatedDate'/>  
         
       </DataTable> 
-      <h1>Adminfddffdfdf</h1>  
    </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  console.log("datainemp",state)
+  return {
+    state: state,
+    fetching: state.fetching,
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    onRequestData: data =>
+      dispatch({ type: GET_EMPLOYEE_DATA_REQUEST, data }),
+    // onRequestExportCSV: (data, value) =>
+    //   dispatch({ type: USER_TABLE_CSV, data, value })
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EmployeeTable);

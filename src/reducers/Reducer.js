@@ -1,3 +1,4 @@
+import { USER_API_LOGIN_SUCCESS, GET_EMPLOYEE_DATA_SUCCESS } from "../actions/types";
 
 let initialState={
     userTableCSV:'',
@@ -9,16 +10,25 @@ let initialState={
 export function Reducer(state=initialState,action){
    switch(action.type)
    {
-    // case DATA_BIDS_BY_BANK_SUCCESS:{
-    //     return {
-    //         ...state,
-    //        data:action.data,
-    //        fetching:false,
-    //     } 
-    //     break; 
-    // };
-    // default:
-    //     return state;
+    case USER_API_LOGIN_SUCCESS:{
+        return {
+            ...state,
+           data:action.data,
+           fetching:false,
+        } 
+        break; 
+    };
+    case GET_EMPLOYEE_DATA_SUCCESS:{
+        return {
+            ...state,
+           data:action.data,
+           fetching:false,
+        } 
+        break; 
+    };
+
+    default:
+        return state;
     }
     
 

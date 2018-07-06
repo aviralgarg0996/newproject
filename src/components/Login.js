@@ -15,6 +15,7 @@ import {basepath} from "../utils/Constant"
 import { fetchData } from '../sagas/WatcherSaga';
 import {  notification } from 'antd';
 import "../style/login.css"
+import { USER_API_LOGIN_REQUEST } from '../actions/types';
 var base64 = require('base-64');
 
 class Login extends Component {
@@ -62,24 +63,13 @@ class Login extends Component {
           /><br /><br />
           <div className="LoginText1">
             <Button id="LoginButton" type="primary" onClick={() => {
-                // var encodedString=base64.encode(this.state.userName.toLowerCase() + ':' + this.state.Password);
-                //  axios({
-                //     method: "post",
-                //     url: basepath + "bank/addpackage",
-                //     headers: {
-                //         'Accept': 'application/json',
-                //         'Content-Type': 'application/json',
-                //         'Authorization': 'Basic'+ encodedString
-                //         }
-                //   })
-                //     .then(response => {
-                      this.props.history.replace(
-                        "/admin"
-                      );
-                    // })
-                    // .catch(error => {
-                    //   console.log("Error");
-                    // });
+                this.props.onRequestLogin({
+                  email:this.state.userName,
+                  password:this.state.Password,
+                  history: this.props.history
+                })
+                      
+
             }}>
               Login&nbsp;&nbsp;&nbsp;<img src={require("../icons/forma.png")} alt="arr" />
             </Button>
@@ -92,15 +82,15 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // error: state.error,
-
+    error: state.error,
+state:state
   }
   
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // onRequestLogin: (data) => dispatch({ type: USER_API_CALL_REQUEST, data })
+   onRequestLogin: (data) => dispatch({ type: USER_API_LOGIN_REQUEST, data })
   }
 }
 
