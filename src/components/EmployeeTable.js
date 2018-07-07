@@ -28,6 +28,32 @@ import { GET_EMPLOYEE_DATA_REQUEST } from '../actions/types';
   export() {
     this.dt.exportCSV();
 }
+DateFormat =(date)=>{
+  if(date==undefined)
+  date="2018-05-07T09:54:38+00:00";
+  
+    var res = date.split("T");
+    var dates=res[0].split("-");
+    var date=dates[2]+"/"+dates[1]+"/"+dates[0];
+  return date;
+  }
+
+   TimeFormat=(date)=>{
+    let res = date.split("T");
+    let time= res[1].split(".");
+    console.log(time);
+    let datee=new Date(date);
+    return datee.toLocaleTimeString();
+  }
+createdAt = (rowData, column) => {
+  return (
+    <div>
+      {this.DateFormat(rowData.createdAt)}&nbsp;&nbsp;
+       {this.TimeFormat(rowData.createdAt)}
+    </div>
+  );
+};
+
   render() {
     let employeelist = [];
     console.log("statetete",this.props.state)
@@ -91,7 +117,7 @@ this.export();
   <Column field="userName" 
         header="User Name" 
          filter={true} 
-         style={{width:"90px",textAlign:'center'}} className='ShortName'/>  
+         style={{width:"110px",textAlign:'center'}} className='ShortName'/>  
         <Column field="email" 
         header="Email" 
         filter={true}
@@ -109,6 +135,7 @@ this.export();
         <Column field="createdAt" 
         header="Created Date" 
          filter={true} 
+         body={this.createdAt}
           style={{width:"170px",textAlign:'center'}} className='CreatedDate'/>  
         
       </DataTable> 

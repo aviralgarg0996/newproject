@@ -36,7 +36,7 @@ class Login extends Component {
         <div id="LoginWholeDiv">
         <div id="Logindiv">
           <div id="logoDiv"><img src={logo} style={{width:"140px",height:"140px"}} alt="DMRC" /></div>
-          <p id="WelTxt" className="LoginText">Welcome MyProject!</p>
+          <p id="WelTxt" className="LoginText">Welcome DMRC!</p>
           <p id="BelTxt" className="LoginText">Enter your email address to login your account.</p><br />
           <Input 
           className="LoginField" 

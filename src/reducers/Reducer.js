@@ -1,4 +1,4 @@
-import { USER_API_LOGIN_SUCCESS, GET_EMPLOYEE_DATA_SUCCESS, GET_EMPLOYEE_DATA_REQUEST, GET_SURVEY_DATA_SUCCESS } from "../actions/types";
+import { USER_API_LOGIN_SUCCESS, GET_EMPLOYEE_DATA_SUCCESS, GET_EMPLOYEE_DATA_REQUEST, GET_SURVEY_DATA_SUCCESS, GET_SURVEY_DATA_REQUEST } from "../actions/types";
 
 let initialState={
     userTableCSV:'',
@@ -39,6 +39,12 @@ case GET_SURVEY_DATA_SUCCESS:{
        fetching:false,
     } 
     break; 
+}
+case GET_SURVEY_DATA_REQUEST:{
+    return{
+        ...state,
+        fetching:true
+    } 
 }
     default:
         return state;

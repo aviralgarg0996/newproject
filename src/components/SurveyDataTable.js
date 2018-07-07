@@ -145,6 +145,7 @@ this.export();
       </div>
       <DataTable columnResizeMode="expand" 
        resizableColumns={true}
+       fetching={this.props.fetching}
         loadingIcon="fas fa-spinner" 
         value={surveyList}
        
@@ -166,173 +167,173 @@ header="UserName"
 filter={true}
  
 style={{width:"110px"}} 
- className='BankId'/> 
+ /> 
 
  <Column field="email" 
 filter={true} 
   header="Email" 
  style={{width:"150px",textAlign:"center"}} 
- className='Image'/>
+ />
 
  <Column field="phoneNo" 
  header="Contact No" 
  filter={true}
  style={{width:"150px"}} 
- className='bankName'/>
+ />
 
  <Column field="age" 
  header="Age" 
   filter={true} 
-  style={{width:"90px",textAlign:'center'}} className='ShortName'/>  
+  style={{width:"90px",textAlign:'center'}} />  
 
  <Column field="sex" 
  header="Sex" 
   filter={true} 
-   style={{width:"90px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"90px",textAlign:'center'}} />  
 
-  <Column field="surveyStation" 
+  <Column  field="surveyStation"
  header="Survey station" 
   filter={true} 
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"120px",textAlign:'center'}} />  
  
- <Column field="surveyStation" 
+ <Column  
  header="Created By" 
   filter={true} 
   body={this.createdByTemp}
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>   
+   style={{width:"120px",textAlign:'center'}} />   
 
- <Column field="surveyStation" 
+ <Column  
  header="Created At" 
   filter={true} 
   body={this.createdAt}
-   style={{width:"170px",textAlign:'center'}} className='CreatedDate'/>   
+   style={{width:"170px",textAlign:'center'}} />   
    
 
-<Column field="surveyStation" 
+<Column  
  header="Origin" 
   filter={true} 
   
   body={(rowData,column)=>{
     return <div>{rowData.regularTrip3.origin}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"120px",textAlign:'center'}} />  
 
-   <Column field="surveyStation" 
+   <Column  
  header="Destination" 
   filter={true}
    
   body={(rowData,column)=>{
     return <div>{rowData.regularTrip3.destination}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"120px",textAlign:'center'}} />  
 
-   <Column field="surveyStation" 
+   <Column  
  header="Distance" 
   filter={true}
    
   body={(rowData,column)=>{
     return <div>{rowData.regularTrip3.distance}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"120px",textAlign:'center'}} />  
 
-<Column field="surveyStation" 
+<Column  
  header="Time Taken" 
   filter={true}
    
   body={(rowData,column)=>{
     return <div>{rowData.regularTrip3.timeTaken}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
-<Column field="surveyStation" 
+   style={{width:"120px",textAlign:'center'}} />  
+<Column  
  header="Start Time" 
   filter={true} 
   body={(rowData,column)=>{
     return <div>{rowData.regularTrip3.startTime}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"120px",textAlign:'center'}} />  
 
    <Column field="purposeTrip4" 
  header="Purpose Of Trip" 
   filter={true}
    
-   style={{width:"130px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"130px",textAlign:'center'}} />  
 
  
-   <Column field="surveyStation" 
+   <Column  
  header="Travel Time" 
   filter={true} 
   body={this.travelTime}
-   style={{width:"170px",textAlign:'center'}} className='CreatedDate'/> 
+   style={{width:"170px",textAlign:'center'}} /> 
 
-    <Column field="surveyStation" 
+    <Column  
  header="Cost" 
   filter={true} 
   body={this.cost}
-   style={{width:"170px",textAlign:'center'}} className='CreatedDate'/> 
-    <Column field="surveyStation" 
+   style={{width:"170px",textAlign:'center'}} /> 
+    <Column  
  header="Safety" 
   filter={true} 
   body={this.safety}
-   style={{width:"170px",textAlign:'center'}} className='CreatedDate'/> 
-    <Column field="surveyStation" 
+   style={{width:"170px",textAlign:'center'}} /> 
+    <Column  
  header="Comfort" 
   filter={true} 
   body={this.comfort}
-   style={{width:"170px",textAlign:'center'}} className='CreatedDate'/>   
+   style={{width:"170px",textAlign:'center'}} />   
  
- <Column field="surveyStation" 
+ <Column  
  header="No of cars" 
   filter={true} 
   body={(rowData,column)=>{
     return <div>{rowData.vehicleOwnerShip7.cars}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
-<Column field="surveyStation" 
+   style={{width:"120px",textAlign:'center'}} />  
+<Column  
  header="No Of Two Wheelers" 
   filter={true} 
   body={(rowData,column)=>{
     return <div>{rowData.vehicleOwnerShip7.twoWheeler}</div>
   }}
-   style={{width:"140px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"140px",textAlign:'center'}} />  
 
-<Column field="surveyStation" 
+<Column  
  header="No Of Bicycle" 
   filter={true} 
   body={(rowData,column)=>{
     return <div>{rowData.vehicleOwnerShip7.bicycle}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"120px",textAlign:'center'}} />  
   
-  <Column field="surveyStation" 
+  <Column  
  header="Travel Mode" 
   filter={true} 
   body={(rowData,column)=>{
     return <div>{rowData.modeOfTravel.travelTrasport}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"120px",textAlign:'center'}} />  
 
 <Column field="costOfTravel8" 
  header="Cost of Travel" 
   filter={true} 
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"120px",textAlign:'center'}} />  
 
-   <Column field="surveyStation" 
+   <Column  
  header="Travel Mode" 
   filter={true} 
   body={(rowData,column)=>{
     return <div>{rowData.modeOfTravel.travelTrasport}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"120px",textAlign:'center'}} />  
 
    {/* <Column field="paidByOffice9" 
  header="Paid By Office" 
   filter={true} 
-   style={{width:"120px",textAlign:'center'}} className='CreatedDate'/>   */}
+   style={{width:"120px",textAlign:'center'}} />   */}
 
 <Column field="willingness10" 
  header="Willingness" 
   filter={true} 
-   style={{width:"130px",textAlign:'center'}} className='CreatedDate'/>  
+   style={{width:"130px",textAlign:'center'}} />  
 
 
 </DataTable>    

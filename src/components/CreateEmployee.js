@@ -57,26 +57,26 @@ import "../style/createemployee.css"
                 //   openNotificationWithIcon('warning',"Name",'Enter Employee Name');
                   else  if(this.state.userName=="")
                 //   openNotificationWithIcon('warning',"Name",'Enter User Name');
-                 alert("Employee name 2")  
+                 alert("Enter User name ")  
                 else  if(this.state.email=="")
                 //   openNotificationWithIcon('warning',"Email",'Enter Email');
-                 alert("Employee name 3")  
+                 alert("Enter Email")  
                 else if(this.state.mobile=="")
                 //   openNotificationWithIcon('warning',"Phone",'Enter Contact No.');
-                 alert("Employee name 4" )  
+                 alert("Enter Mobile" )  
                 else  if(this.state.password=="")
                 //   openNotificationWithIcon('warning',"Password",'Enter Password');
-                 alert("Employee name 4")  
+                 alert("Enter Password")  
                 else if(this.state.confirmpassword=="")
                 //   openNotificationWithIcon('warning',"Password",'Enter Confirm Password');
-                 alert("Employee name 5")  
+                 alert("Enter Confirm Password")  
                 else if(this.state.surveyStation=="")
                 //   openNotificationWithIcon('warning',"Station",'Enter Survey Station');
-                 alert("Employee name 6")  
+                 alert("Enter Survey Station")  
                 else  if(this.state.password!=this.state.confirmpassword)
                   {
                 //   openNotificationWithIcon('warning',"Password",'Password Fields not match');
-                 alert("Employee name 7")
+                 alert("Password not match")
                 this.setState({
                       password:"",
                       confirmpassword:""
@@ -104,6 +104,7 @@ import "../style/createemployee.css"
                   }
                
       } }>Create</Button>
+      <Link to="/admin/user" > <Button id="btnCreateUser">Cancel</Button></Link>
  </Row>
 </div>
    </div>
