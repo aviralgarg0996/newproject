@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
  import "../style/adminpanel.css"
 import { Breadcrumb } from 'antd';
 import SurveyDataTable from '../components/SurveyDataTable';
+import BarChart from '../components/BarChart';
+import Example from '../components/Testrsat';
 // import "../style/Content.css"
 
 export default class AdminPanel extends Component {
@@ -26,7 +28,7 @@ export default class AdminPanel extends Component {
             
              <Route path='/admin/user' component={EmployeeRoutes}/>
              <Route path='/admin/survey' component={SurveyDataTable}/>
-             
+             <Route path='/admin/use' component={Example}/>
             
          <div>
            </div> 

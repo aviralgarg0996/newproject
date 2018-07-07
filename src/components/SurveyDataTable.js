@@ -85,7 +85,8 @@ createdAt = (rowData, column) => {
         let obj;
         obj = {
           ...data,
-          index: data.surveyStation+data.enumeratorName+(key+1)
+          index: data.surveyStation+data.enumeratorName+(key+1),
+          sno:key+1
         };
         surveyList = surveyList.concat(obj);
       });
@@ -149,6 +150,12 @@ this.export();
        
         ref={(el)=>{this.dt=el;}}
          scrollable={true}>
+
+ <Column field="sno"
+ header="Index"
+ filter={true}
+ style={{width:"60px",textAlign:"right",textAlign:'center'}}/>
+         
  <Column field="index"
  header="S.No"
  filter={true}
@@ -330,7 +337,6 @@ filter={true}
 
 </DataTable>    
 </div>
-<BarChart/>
              </div>
          <div>
            </div> 
