@@ -1,6 +1,6 @@
 import { Breadcrumb, Col } from 'antd';
 import React, { Component } from 'react'
-import { Menu, Dropdown, Icon,Upload } from 'antd';
+import { Menu, Dropdown, Icon,Upload ,DatePicker} from 'antd';
 import {Link} from 'react-router-dom';
 import {connect} from "react-redux"
 import axios from "axios";
@@ -11,7 +11,10 @@ import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/omega/theme.css';
 import {ColumnGroup} from 'primereact/components/columngroup/ColumnGroup';
 import { InputText } from "primereact/components/inputtext/InputText";
+import {Calendar} from 'primereact/components/calendar/Calendar';
 import {Row} from 'primereact/components/row/Row';
+import moment from "moment"
+import "../style/Content.css"
 // import {ColumnGroup} from 'primereact/ColumnGroup';
 // import {Row} from 'primereact/row';
 import Header1 from './Header1';
@@ -23,7 +26,8 @@ class SurveyDataTable extends Component {
     super(props);
     this.state={
       userimage:[],
-      toggle:false
+      toggle:false,
+      createdDate:""
     }
   }
   componentWillMount() {
@@ -115,7 +119,23 @@ createdAt = (rowData, column) => {
 // </ColumnGroup>;
 
 
-
+let createdDateFilter =
+<DatePicker
+  allowClear={false}
+  value={this.state.createdDate}
+  className="ui-column-filter" onChange={
+    (date, dateString) => {
+      this.setState({
+        filterName: "createdAt",
+        filterData: dateString,
+        page: 1,
+        createdDate: moment(dateString)
+      })
+      this.props.onRequestSurveyData({
+        page:1,limit:this.state.limit,createdAt:dateString
+      })
+    }
+  } />
     return (
         <div>
          <Header1/>
@@ -205,6 +225,7 @@ filter={true}
  <Column  
  header="Created At" 
   filter={true} 
+  filterElement={createdDateFilter}
   body={this.createdAt}
    style={{width:"170px",textAlign:'center'}} />   
    
