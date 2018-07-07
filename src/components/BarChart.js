@@ -109,9 +109,7 @@ abcd=()=>{
       defaultFontSize: 22;
       defaultFontColor :'24ef09'
 }
-this.setState({
-    chartData
-})
+
 }
   
   
