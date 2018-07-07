@@ -2,14 +2,15 @@ import { takeLatest, call, put } from "redux-saga/effects";
 import axios from "axios";
 import {basepath} from "../utils/Constant"
 import {push} from 'react-router-redux'
-import { USER_API_LOGIN_REQUEST, USER_API_LOGIN_SUCCESS, USER_API_LOGIN_FAILURE, GET_EMPLOYEE_DATA_REQUEST } from "../actions/types";
+import { USER_API_LOGIN_REQUEST, USER_API_LOGIN_SUCCESS, USER_API_LOGIN_FAILURE, GET_EMPLOYEE_DATA_REQUEST, GET_SURVEY_DATA_REQUEST } from "../actions/types";
  import {EmployeeDataSaga} from './EmployeeDataSaga'
-
+import {SurveyDataSaga} from "./SurveyDataSaga"
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* watcherSaga() {
   yield takeLatest(USER_API_LOGIN_REQUEST, LoginWorkerSaga);
   yield takeLatest(GET_EMPLOYEE_DATA_REQUEST,EmployeeDataSaga);
+  yield takeLatest(GET_SURVEY_DATA_REQUEST,SurveyDataSaga)
   }
 
 export function fetchData(data) {

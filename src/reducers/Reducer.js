@@ -1,4 +1,4 @@
-import { USER_API_LOGIN_SUCCESS, GET_EMPLOYEE_DATA_SUCCESS } from "../actions/types";
+import { USER_API_LOGIN_SUCCESS, GET_EMPLOYEE_DATA_SUCCESS, GET_EMPLOYEE_DATA_REQUEST, GET_SURVEY_DATA_SUCCESS } from "../actions/types";
 
 let initialState={
     userTableCSV:'',
@@ -18,6 +18,12 @@ export function Reducer(state=initialState,action){
         } 
         break; 
     };
+    case GET_EMPLOYEE_DATA_REQUEST:{
+        return{
+            ...state,
+            fetching:true
+        }
+    }
     case GET_EMPLOYEE_DATA_SUCCESS:{
         return {
             ...state,
@@ -26,7 +32,14 @@ export function Reducer(state=initialState,action){
         } 
         break; 
     };
-
+case GET_SURVEY_DATA_SUCCESS:{
+    return {
+        ...state,
+       data:action.data,
+       fetching:false,
+    } 
+    break; 
+}
     default:
         return state;
     }

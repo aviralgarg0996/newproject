@@ -25,6 +25,9 @@ import { GET_EMPLOYEE_DATA_REQUEST } from '../actions/types';
   }
   
 
+  export() {
+    this.dt.exportCSV();
+}
   render() {
     let employeelist = [];
     console.log("statetete",this.props.state)
@@ -40,14 +43,33 @@ import { GET_EMPLOYEE_DATA_REQUEST } from '../actions/types';
     }
     return (
         <div style={{marginTop:"15px"}}>
-          <span id="ButtonSpans">
-      
+          <div id="ButtonSpans" style={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'flex-end',
+          }}>
+       {/* <span id="selecNos">
+      <select id="NoDropDown"
+      onChange={(event)=>{
+        this.setState({limit:event.target.value})
+        this.props.onRequestData({page:1,limit:event.target.value})
+       }}>
+        <option value="10">10</option>
+  <option value="20">20</option>
+  <option value="30">30</option>
+  <option value="40">40</option>
+      </select></span> */}
       <Link to="/admin/user/createemployee" >  <button id="btnCreateUser" >Create Employee</button></Link>
-      </span>
+      <button id="btnCreateUser" onClick={()=>{
+this.export();
+      }}>Export CSV</button>
+      </div>
       
              <DataTable columnResizeMode="expand" 
               resizableColumns={true}
+              loading={this.props.fetching}
                loadingIcon="fas fa-spinner" 
+               ref={(el)=>{this.dt=el;}}
                value={employeelist}
                 scrollable={true}>
         <Column field="index"
@@ -58,7 +80,7 @@ import { GET_EMPLOYEE_DATA_REQUEST } from '../actions/types';
        <Column field="_id" 
        header="Emp ID" 
        filter={true}
-        style={{width:"80px"}} 
+        style={{width:"70px"}} 
         className='BankId'/> 
 
         <Column field="employeeName" 
