@@ -168,7 +168,7 @@ this.export();
        fetching={this.props.fetching}
         loadingIcon="fas fa-spinner" 
         value={surveyList}
-       
+        scrollHeight={"51vh"}
         ref={(el)=>{this.dt=el;}}
          scrollable={true}>
 
