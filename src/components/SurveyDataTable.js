@@ -235,25 +235,25 @@ filter={true}
   filter={true} 
   
   body={(rowData,column)=>{
-    return <div>{rowData.regularTrip3.origin}</div>
+    return <div>{rowData.origin.latitude==null?"20.686765":rowData.origin.latitude} , {rowData.origin.longitude==null?"80.756565":rowData.origin.longitude}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} />  
+   style={{width:"170px",textAlign:'center'}} />  
 
    <Column  
  header="Destination" 
   filter={true}
    
   body={(rowData,column)=>{
-    return <div>{rowData.regularTrip3.destination}</div>
+    return <div>{rowData.destination.latitude1==null?"30.767565":rowData.destination.latitude1} , {rowData.destination.longitude1==null?"70.643333":rowData.destination.longitude1}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} />  
+   style={{width:"170px",textAlign:'center'}} />  
 
    <Column  
  header="Distance" 
   filter={true}
    
   body={(rowData,column)=>{
-    return <div>{rowData.regularTrip3.distance}</div>
+    return <div>{rowData.regularTrip3.distance}&nbsp;Km</div>
   }}
    style={{width:"120px",textAlign:'center'}} />  
 
@@ -262,7 +262,7 @@ filter={true}
   filter={true}
    
   body={(rowData,column)=>{
-    return <div>{rowData.regularTrip3.timeTaken}</div>
+    return <div>{rowData.regularTrip3.timeTaken}&nbsp; min</div>
   }}
    style={{width:"120px",textAlign:'center'}} />  
 <Column  
@@ -338,13 +338,13 @@ filter={true}
   filter={true} 
    style={{width:"120px",textAlign:'center'}} />  
 
-   <Column  
+   {/* <Column  
  header="Travel Mode" 
   filter={true} 
   body={(rowData,column)=>{
     return <div>{rowData.modeOfTravel.travelTrasport}</div>
   }}
-   style={{width:"120px",textAlign:'center'}} />  
+   style={{width:"120px",textAlign:'center'}} />   */}
 
    {/* <Column field="paidByOffice9" 
  header="Paid By Office" 
