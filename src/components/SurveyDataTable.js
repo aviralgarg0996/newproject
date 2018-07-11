@@ -21,6 +21,7 @@ import Header1 from './Header1';
 
 import { GET_SURVEY_DATA_REQUEST } from '../actions/types';
 import BarChart from './BarChart';
+import NavigationRoute from './NavigationRoute';
 class SurveyDataTable extends Component {
   constructor(props){
     super(props);
@@ -168,6 +169,8 @@ this.export();
        fetching={this.props.fetching}
         loadingIcon="fas fa-spinner" 
         value={surveyList}
+        onRowClick={(e)=>this.props.history.push({pathname:`/admin/survey/surveydetails`,state:e.data})
+      }
         scrollHeight={"51vh"}
         ref={(el)=>{this.dt=el;}}
          scrollable={true}>

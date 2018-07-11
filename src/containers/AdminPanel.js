@@ -14,6 +14,7 @@ import { Breadcrumb } from 'antd';
 import SurveyDataTable from '../components/SurveyDataTable';
 import BarChart from '../components/BarChart';
 import Example from '../components/Testrsat';
+import NavigationRoute from '../components/NavigationRoute';
 // import "../style/Content.css"
 
 export default class AdminPanel extends Component {
@@ -29,7 +30,7 @@ export default class AdminPanel extends Component {
              <Route path='/admin/user' component={EmployeeRoutes}/>
              <Route path='/admin/survey' component={SurveyDataTable}/>
              <Route path='/admin/use' component={Example}/>
-            
+            <Route path="/admin/survey/surveydetails" history={this.props.history} component={NavigationRoute}/>
          <div>
            </div> 
       </div>
