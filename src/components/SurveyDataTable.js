@@ -56,7 +56,6 @@ comfort=(rowData,column)=>{
 safety=(rowData,column)=>{
   return <div>{rowData.commuteTrip3.opinionSafety}</div>
 }
-
  DateFormat =(date)=>{
   if(date==undefined)
   date="2018-05-07T09:54:38+00:00";
@@ -120,7 +119,7 @@ createdAt = (rowData, column) => {
 // </ColumnGroup>;
 let createdByFilter=<InputText
 value={this.state.createdBy}
-placeholder="Created By"
+placeholder="Enumerator"
 onChange={(e) => {this.setState({createdBy: e.target.value})
 this.props.onRequestSurveyData({
   page:1,limit:this.state.limit,createdBy:e.target.value
@@ -195,7 +194,7 @@ this.export();
  style={{width:"130px",textAlign:"right",textAlign:'center'}}/>
 
 <Column field="userName" 
-header="UserName" 
+header="InterViewee" 
 filter={true}
  
 style={{width:"110px"}} 
@@ -229,13 +228,15 @@ filter={true}
    style={{width:"120px",textAlign:'center'}} />  
  
  <Column  
- header="Created By" 
+ field="createdBy.name"
+ header="Enumerator" 
   filter={true} 
   filterElement={createdByFilter}
   body={this.createdByTemp}
    style={{width:"120px",textAlign:'center',whiteSpace:'initial'}} />   
 
  <Column  
+ field="createdAt"
  header="Created At" 
   filter={true} 
   filterElement={createdDateFilter}
@@ -244,24 +245,43 @@ filter={true}
    
 
 <Column  
- header="Origin" 
+field="origin.latitude"
+ header="Origin Latitude" 
   filter={true} 
-  
   body={(rowData,column)=>{
-    return<div>{rowData.origin.latitude} , {rowData.origin.longitude}</div>
+    return<div>{rowData.origin.latitude} </div>
   }}
-   style={{width:"200px",textAlign:'center'}} />  
+   style={{width:"160px",textAlign:'center'}} />  
 
    <Column  
- header="Destination" 
+field="origin.longitude"
+ header="Origin Longitude" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return<div> {rowData.origin.longitude}</div>
+  }}
+   style={{width:"160px",textAlign:'center'}} />  
+
+   <Column  
+   field="destination.latitude1"
+ header="Destination Latitude" 
   filter={true}
-   
   body={(rowData,column)=>{
-    return <div>{rowData.destination.latitude1?"30.767565":rowData.destination.latitude1} , {rowData.destination.longitude1?"70.643333":rowData.destination.longitude1}</div>
+    return <div>{rowData.destination.latitude1?"30.767565":rowData.destination.latitude1}</div>
+  }}
+   style={{width:"200px",textAlign:'center'}} />  
+<Column  
+   field="destination.longitude1"
+ header="Destination Latitude" 
+  filter={true}
+  body={(rowData,column)=>{
+    return <div> {rowData.destination.longitude1?"70.643333":rowData.destination.longitude1}</div>
   }}
    style={{width:"200px",textAlign:'center'}} />  
 
+
    <Column  
+   field="regularTrip3.distance"
  header="Distance" 
   filter={true}
    
@@ -271,6 +291,7 @@ filter={true}
    style={{width:"120px",textAlign:'center'}} />  
 
 <Column  
+field="regularTrip3.timeTaken"
  header="Time Taken" 
   filter={true}
    
@@ -278,7 +299,9 @@ filter={true}
     return <div>{rowData.regularTrip3.timeTaken}&nbsp; min</div>
   }}
    style={{width:"120px",textAlign:'center'}} />  
-<Column  
+
+<Column
+field="regularTrip3.startTime"  
  header="Start Time" 
   filter={true} 
   body={(rowData,column)=>{
@@ -287,6 +310,7 @@ filter={true}
    style={{width:"120px",textAlign:'center'}} />  
 
    <Column field="purposeTrip4" 
+   field="Purpose Of Trip"
  header="Purpose Of Trip" 
   filter={true}
    
@@ -294,28 +318,35 @@ filter={true}
 
  
    <Column  
+   field="commuteTrip.opinionTrasport"
  header="Travel Time" 
   filter={true} 
   body={this.travelTime}
    style={{width:"170px",textAlign:'center'}} /> 
 
     <Column  
+    field="commuteTrip1.opinionCost"
  header="Cost" 
   filter={true} 
   body={this.cost}
    style={{width:"170px",textAlign:'center'}} /> 
+
     <Column  
+    field="commuteTrip3.opinionSafety"
  header="Safety" 
   filter={true} 
   body={this.safety}
    style={{width:"170px",textAlign:'center'}} /> 
+
     <Column  
+    field="commuteTrip2.opinionComfort"
  header="Comfort" 
   filter={true} 
   body={this.comfort}
    style={{width:"170px",textAlign:'center'}} />   
  
  <Column  
+ field="vehicleOwnership7"
  header="No of cars" 
   filter={true} 
   body={(rowData,column)=>{
@@ -323,6 +354,7 @@ filter={true}
   }}
    style={{width:"120px",textAlign:'center'}} />  
 <Column  
+field="vehicleOwnerShip7.twoWheeler"
  header="No Of Two Wheelers" 
   filter={true} 
   body={(rowData,column)=>{
@@ -331,6 +363,7 @@ filter={true}
    style={{width:"140px",textAlign:'center'}} />  
 
 <Column  
+field="vehicleOwnerShip7.bicycle"
  header="No Of Bicycle" 
   filter={true} 
   body={(rowData,column)=>{
@@ -339,6 +372,7 @@ filter={true}
    style={{width:"120px",textAlign:'center'}} />  
   
   <Column  
+  field="modeOfTravel.travelTrasport"
  header="Travel Mode" 
   filter={true} 
   body={(rowData,column)=>{
