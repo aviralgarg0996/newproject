@@ -33,10 +33,10 @@ this.setState({
         </GoogleMap>
      ));
     return (
-        <div>
+        <div id="MapDiv">
         <GoogleMapExample
-          containerElement={ <div style={{ height: `500px`, width: '500px' }} /> }
-          mapElement={ <div style={{ height: `100%` }} /> }
+          containerElement={ <div style={{ height: `500px`, width: '1000px' }} /> }
+          mapElement={ <div style={{left:"250px",top:"200px", height: `100%` }} /> }
         
         />
       </div>

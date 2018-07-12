@@ -238,18 +238,18 @@ filter={true}
   filter={true} 
   
   body={(rowData,column)=>{
-    return <div>{rowData.origin.latitude==null?"20.686765":rowData.origin.latitude} , {rowData.origin.longitude==null?"80.756565":rowData.origin.longitude}</div>
+    return<div>{rowData.origin.latitude} , {rowData.origin.longitude}</div>
   }}
-   style={{width:"170px",textAlign:'center'}} />  
+   style={{width:"200px",textAlign:'center'}} />  
 
    <Column  
  header="Destination" 
   filter={true}
    
   body={(rowData,column)=>{
-    return <div>{rowData.destination.latitude1==null?"30.767565":rowData.destination.latitude1} , {rowData.destination.longitude1==null?"70.643333":rowData.destination.longitude1}</div>
+    return <div>{rowData.destination.latitude1?"30.767565":rowData.destination.latitude1} , {rowData.destination.longitude1?"70.643333":rowData.destination.longitude1}</div>
   }}
-   style={{width:"170px",textAlign:'center'}} />  
+   style={{width:"200px",textAlign:'center'}} />  
 
    <Column  
  header="Distance" 
