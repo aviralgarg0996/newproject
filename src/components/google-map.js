@@ -25,10 +25,10 @@ const MapWithADirectionsRenderer = compose(
 
       console.log("haha", this.props.originl);
       console.log("haha", parseFloat(this.props.originl));
-      const a = 28.17219; //parseFloat(this.props.originl);
-      const b = 77.504; //parseFloat(this.props.originlo);
-      const c = 28.6139; //parseFloat(this.props.destl);
-      const d = 77.209; //parseFloat(this.props.destlo);
+      const a = parseFloat(this.props.originl);
+      const b = parseFloat(this.props.originlo);
+      const c = parseFloat(this.props.destl);
+      const d = parseFloat(this.props.destlo);
       console.log("haha", typeof 28.17219, b, c, d);
       DirectionsService.route(
         {
