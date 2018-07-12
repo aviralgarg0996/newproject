@@ -1,51 +1,49 @@
-import React,{Component} from 'react';
-import {Bar, Pie, Line} from 'react-chartjs-2';
+import React, { Component } from "react";
+import { Bar, Pie, Line } from "react-chartjs-2";
 import axios from "axios";
-import {basepath} from "../utils/Constant";
-import { withGoogleMap, GoogleMap ,Marker} from 'react-google-maps';
-import Header1 from "./Header1"
-class NavigationRoute extends Component{
+import { basepath } from "../utils/Constant";
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import Header1 from "./Header1";
+import Google from "./google-map";
+
+class NavigationRoute extends Component {
   componentDidMount() {
     if (this.props.history.location.state) {
-        console.log("statatat",this.props.history.location.state.origin)
-this.setState({
-    latitude:this.props.history.location.state.origin.latitude,
-    long:this.props.history.location.state.origin.longitude
-})
+      console.log(
+        "statatat",
+        this.props.history.location.state.origin,
+        this.props.history.location.state.destination
+      );
+      this.setState({
+        olatitude: this.props.history.location.state.origin.latitude,
+        olongitude: this.props.history.location.state.origin.longitude,
+        dlatitude: this.props.history.location.state.destination.latitude1,
+        dlongitude: this.props.history.location.state.destination.longitude1
+      });
     }
   }
-    constructor(props)
-    {
-        super(props);
-        this.state={
-            latitude:"",
-            long:""
-        }
-    }
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      olatitude: "",
+      olongitude: "",
+      dlatitude: "",
+      dlongitude: ""
+    };
+  }
 
   render() {
-    const GoogleMapExample = withGoogleMap(props => (
-        <GoogleMap
-          defaultCenter = { { lat: 28.6275609, lng: 77.2784081 } }
-          defaultZoom = { 13 }
-        >
-        <Marker position={{ lat: 28.6275609, lng: 77.2784081 }} />
-        </GoogleMap>
-     ));
     return (
-        <div id="MapDiv">
-        <Header1/>
-        <GoogleMapExample
-          containerElement={ <div style={{ height: `500px`, width: '1000px' }} /> }
-          mapElement={ <div style={{left:"250px",top:"200px", height: `100%` }} /> }
-        
+      <div>
+        <Google
+          originl={this.state.olatitude}
+          originlo={this.state.olongitude}
+          destl={this.state.dlatitude}
+          destlo={this.state.dlongitude}
         />
       </div>
-    )
+    );
   }
 }
-
- 
 
 export default NavigationRoute;
