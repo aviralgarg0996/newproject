@@ -251,7 +251,7 @@ field="origin.latitude"
   body={(rowData,column)=>{
     return<div>{rowData.origin.latitude} </div>
   }}
-   style={{width:"160px",textAlign:'center'}} />  
+   style={{width:"150px",textAlign:'center'}} />  
 
    <Column  
 field="origin.longitude"
@@ -260,7 +260,7 @@ field="origin.longitude"
   body={(rowData,column)=>{
     return<div> {rowData.origin.longitude}</div>
   }}
-   style={{width:"160px",textAlign:'center'}} />  
+   style={{width:"150px",textAlign:'center'}} />  
 
    <Column  
    field="destination.latitude1"
@@ -269,7 +269,7 @@ field="origin.longitude"
   body={(rowData,column)=>{
     return <div>{rowData.destination.latitude1?"30.767565":rowData.destination.latitude1}</div>
   }}
-   style={{width:"200px",textAlign:'center'}} />  
+   style={{width:"150px",textAlign:'center'}} />  
 <Column  
    field="destination.longitude1"
  header="Destination Latitude" 
@@ -277,7 +277,7 @@ field="origin.longitude"
   body={(rowData,column)=>{
     return <div> {rowData.destination.longitude1?"70.643333":rowData.destination.longitude1}</div>
   }}
-   style={{width:"200px",textAlign:'center'}} />  
+   style={{width:"150px",textAlign:'center'}} />  
 
 
    <Column  
@@ -310,10 +310,8 @@ field="regularTrip3.startTime"
    style={{width:"120px",textAlign:'center'}} />  
 
    <Column field="purposeTrip4" 
-   field="Purpose Of Trip"
  header="Purpose Of Trip" 
   filter={true}
-   
    style={{width:"130px",textAlign:'center'}} />  
 
  
