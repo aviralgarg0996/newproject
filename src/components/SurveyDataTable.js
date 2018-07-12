@@ -169,7 +169,9 @@ this.export();
        fetching={this.props.fetching}
         loadingIcon="fas fa-spinner" 
         value={surveyList}
-        onRowClick={(e)=>this.props.history.push({pathname:`/admin/survey/surveydetails`,state:e.data})
+        onRowClick={(e)=>{
+          console.log("datatata",e)
+          this.props.history.push({pathname:`/admin/survey/surveydetails`,state:e.data})}
       }
         scrollHeight={"51vh"}
         ref={(el)=>{this.dt=el;}}

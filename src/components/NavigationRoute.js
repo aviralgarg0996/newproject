@@ -35,6 +35,7 @@ class NavigationRoute extends Component {
   render() {
     return (
       <div>
+        <Header1/>
         <Google
           originl={this.state.olatitude}
           originlo={this.state.olongitude}
