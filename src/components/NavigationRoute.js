@@ -3,6 +3,7 @@ import {Bar, Pie, Line} from 'react-chartjs-2';
 import axios from "axios";
 import {basepath} from "../utils/Constant";
 import { withGoogleMap, GoogleMap ,Marker} from 'react-google-maps';
+import Header1 from "./Header1"
 class NavigationRoute extends Component{
   componentDidMount() {
     if (this.props.history.location.state) {
@@ -34,6 +35,7 @@ this.setState({
      ));
     return (
         <div id="MapDiv">
+         <Header1/>
         <GoogleMapExample
           containerElement={ <div style={{ height: `500px`, width: '1000px' }} /> }
           mapElement={ <div style={{left:"250px",top:"200px", height: `100%` }} /> }
