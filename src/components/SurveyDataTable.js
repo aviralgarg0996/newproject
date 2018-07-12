@@ -28,7 +28,8 @@ class SurveyDataTable extends Component {
     this.state={
       userimage:[],
       toggle:false,
-      createdDate:""
+      createdDate:"",
+      createdBy:""
     }
   }
   componentWillMount() {
@@ -69,7 +70,6 @@ safety=(rowData,column)=>{
    TimeFormat=(date)=>{
     let res = date.split("T");
     let time= res[1].split(".");
-    console.log(time);
     let datee=new Date(date);
     return datee.toLocaleTimeString();
   }
@@ -118,7 +118,15 @@ createdAt = (rowData, column) => {
 //         <Column header="This Year" />
 //     </Row> */}
 // </ColumnGroup>;
-
+let createdByFilter=<InputText
+value={this.state.createdBy}
+placeholder="Created By"
+onChange={(e) => {this.setState({createdBy: e.target.value})
+this.props.onRequestSurveyData({
+  page:1,limit:this.state.limit,createdBy:e.target.value
+})
+}}
+/>
 
 let createdDateFilter =
 <DatePicker
@@ -166,11 +174,10 @@ this.export();
       </div>
       <DataTable columnResizeMode="expand" 
        resizableColumns={true}
-       fetching={this.props.fetching}
+       fetching={this.props.state.fetching}
         loadingIcon="fas fa-spinner" 
         value={surveyList}
         onRowClick={(e)=>{
-          console.log("datatata",e)
           this.props.history.push({pathname:`/admin/survey/surveydetails`,state:e.data})}
       }
         scrollHeight={"51vh"}
@@ -224,8 +231,9 @@ filter={true}
  <Column  
  header="Created By" 
   filter={true} 
+  filterElement={createdByFilter}
   body={this.createdByTemp}
-   style={{width:"120px",textAlign:'center'}} />   
+   style={{width:"120px",textAlign:'center',whiteSpace:'initial'}} />   
 
  <Column  
  header="Created At" 
@@ -375,13 +383,13 @@ filter={true}
 }
 
 const mapStateToProps = state => {
-  console.log("datainsurvey",state)
   return {
     state: state,
     fetching: state.fetching,
   };
 };
 const mapDispatchToProps = dispatch => {
+  console.log("dispatched from dataTable")
   return {
     onRequestSurveyData: data =>
       dispatch({ type: GET_SURVEY_DATA_REQUEST, data }),

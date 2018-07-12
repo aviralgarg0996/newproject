@@ -15,6 +15,7 @@ export function getData(data,url) {
   
 // worker saga: makes the api call when watcher saga sees the action
 export function* SurveyDataSaga(action) {
+  console.log("in survey saga")
   try {
     const response = yield call(getData,action.data,`${basepath}survey/getSurvey`);
     const data = response.data;
