@@ -176,7 +176,7 @@ this.export();
        fetching={this.props.state.fetching}
         loadingIcon="fas fa-spinner" 
         value={surveyList}
-        onRowClick={(e)=>{
+        onRowDoubleClick={(e)=>{
           this.props.history.push({pathname:`/admin/survey/surveydetails`,state:e.data})}
       }
         scrollHeight={"51vh"}
