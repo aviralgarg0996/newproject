@@ -176,7 +176,7 @@ this.export();
        fetching={this.props.state.fetching}
         loadingIcon="fas fa-spinner" 
         value={surveyList}
-        onRowDoubleClick={(e)=>{
+        onRowClick={(e)=>{
           this.props.history.push({pathname:`/admin/survey/surveydetails`,state:e.data})}
       }
         scrollHeight={"51vh"}
@@ -267,7 +267,7 @@ field="origin.longitude"
  header="Destination Latitude" 
   filter={true}
   body={(rowData,column)=>{
-    return <div>{rowData.destination.latitude1?"30.767565":rowData.destination.latitude1}</div>
+    return <div>{rowData.destination.latitude1}</div>
   }}
    style={{width:"150px",textAlign:'center'}} />  
 <Column  
@@ -275,7 +275,7 @@ field="origin.longitude"
  header="Destination Latitude" 
   filter={true}
   body={(rowData,column)=>{
-    return <div> {rowData.destination.longitude1?"70.643333":rowData.destination.longitude1}</div>
+    return <div> {rowData.destination.longitude1}</div>
   }}
    style={{width:"150px",textAlign:'center'}} />  
 
