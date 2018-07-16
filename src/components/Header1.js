@@ -22,7 +22,16 @@ import {basepath} from "../utils/Constant";
     return (
     
         <div className="header_container">
-           <div id="headerdiv"></div> 
+           <div id="headerdiv">
+           <button 
+           style={{color:'white',fontSize:"20px",marginTop:"5px",marginLeft:"10px"}}
+           id="LoginButton" 
+           type="primary" onClick={()=>{
+            this.props.history.replace("/")
+          }}>
+           Logout
+            </button>
+           </div> 
            <div id="HeaderDiv2">
       <span id="UserList"> 
       <h2 style={{marginLeft:'10px'}}>Survey Data </h2>

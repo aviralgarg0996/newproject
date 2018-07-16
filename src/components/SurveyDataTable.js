@@ -146,7 +146,7 @@ let createdDateFilter =
   } />
     return (
         <div>
-         <Header1/>
+         <Header1 history={this.props.history}/>
         <div className="parent_container">
       
              <div className="content_container">
