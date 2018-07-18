@@ -138,6 +138,11 @@ this.export();
          body={this.createdAt}
           style={{width:"170px",textAlign:'center'}} className='CreatedDate'/>  
         
+        <Column field="surveyStation" 
+        header="Survey Station" 
+         filter={true} 
+          style={{width:"170px",textAlign:'center'}} className='surveyStation'/> 
+
       </DataTable> 
    </div>
     )
