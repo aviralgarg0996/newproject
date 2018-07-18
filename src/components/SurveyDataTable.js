@@ -401,6 +401,15 @@ field="vehicleOwnerShip7.bicycle"
   filter={true} 
    style={{width:"130px",textAlign:'center'}} />  
 
+<Column field="reasonForLeavingMetro" 
+ header="Reason For Leaving Metro" 
+  filter={true} 
+   style={{width:"180px",textAlign:'center'}} />  
+
+<Column field="stations" 
+ header="When You Left Metro?" 
+  filter={true} 
+   style={{width:"180px",textAlign:'center'}} />  
 
 </DataTable>    
 </div>
