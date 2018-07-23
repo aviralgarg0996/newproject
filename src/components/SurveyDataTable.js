@@ -411,6 +411,88 @@ field="vehicleOwnerShip7.bicycle"
   filter={true} 
    style={{width:"180px",textAlign:'center'}} />  
 
+<Column field="reasonNoMetro2.notRoute" 
+ header="Route doesn't Match?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.notRoute==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+
+   <Column field="reasonNoMetro2.lackOfService" 
+ header="Lack Of Services?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.lackOfService==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+   <Column field="reasonNoMetro2.travelTimeHigh" 
+ header="High Travel time?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.travelTimeHigh==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+ <Column field="reasonNoMetro2.unaffordableFare" 
+ header="Metro Fares Unaffordable?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.unaffordableFare==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+ <Column field="reasonNoMetro2.highReachingCost" 
+ header="Reaching Cost to Metro Station?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.highReachingCost==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+    <Column field="reasonNoMetro2.modeChanges" 
+ header="High Number of Transfers?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.modeChanges==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+ <Column field="reasonNoMetro2.crowded" 
+ header="Crwoded Metro coaches?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.crowded==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+    <Column field="reasonNoMetro2.seatAvailable" 
+ header="Seat Availability?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.seatAvailable==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+    <Column field="reasonNoMetro2.security" 
+ header="Safety & Security?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.security==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+
+ <Column field="reasonNoMetro2.other" 
+ header="Others" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.others}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
 </DataTable>    
 </div>
              </div>
