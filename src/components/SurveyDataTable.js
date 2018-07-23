@@ -344,7 +344,7 @@ field="regularTrip3.startTime"
    style={{width:"170px",textAlign:'center'}} />   
  
  <Column  
- field="vehicleOwnership7"
+ field="vehicleOwnerShip7.cars"
  header="No of cars" 
   filter={true} 
   body={(rowData,column)=>{
