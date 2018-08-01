@@ -96,6 +96,7 @@ this.export();
               loading={this.props.fetching}
                loadingIcon="fas fa-spinner" 
                ref={(el)=>{this.dt=el;}}
+               scrollHeight={"51vh"}
                value={employeelist}
                 scrollable={true}>
         <Column field="index"

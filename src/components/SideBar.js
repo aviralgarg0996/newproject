@@ -27,27 +27,33 @@ class SideBar extends Component {
       <Sider width={210} >
         <Menu
           mode="inline"
-          style={{  width: '60%', left: 0 }}
+          style={{ backgroundColor:"#C0C0C0", left: 0 ,height:"100%"}}
         >
-        <div id="SiderInfo">
-        </div>
-        <SubMenu key="1"
-                    title={<span>
+    <Menu.Item
+         key="50">
+                    <NavLink className="nav-text" to="/admin/user">&nbsp;&nbsp;<span style={{color:'black'}}>Employee</span></NavLink>
+                    </Menu.Item>
+                    <Menu.Item
+         key="50">
+                    <NavLink className="nav-text" to="/admin/survey">&nbsp;&nbsp;<span style={{color:'black'}}>Survey</span></NavLink>
+                    </Menu.Item>
+        {/* <SubMenu key="1"
+                    title={<span> */}
                         {/* <img src={require("../icons/SideBar/products.png")} alt="user" /> */}
-                        <NavLink className="nav-text" to="/admin/user"><span style={{color:'white'}}>Employee</span></NavLink></span>}>
+                        {/* <NavLink className="nav-text" to="/admin/user"><span style={{color:'white'}}>Employee</span></NavLink></span>}>
             </SubMenu>
                  
           <SubMenu key="2"
-                    title={<span>
+                    title={<span> */}
                         {/* <img src={require("../icons/SideBar/products.png")} alt="user" /> */}
-                        <NavLink className="nav-text" to="/admin/survey"><span style={{color:'white'}}>Survey</span></NavLink></span>}>
+                        {/* <NavLink className="nav-text" to="/admin/survey"><span style={{color:'white'}}>Survey</span></NavLink></span>}> */}
                         
                       
                         {/* <Menu.Item key="21"><NavLink className="nav-text" to="/home/product">Products</NavLink></Menu.Item>
                         <Menu.Item key="22"><NavLink className="nav-text" to="/home/product/categories">Categories</NavLink></Menu.Item>
                         <Menu.Item key="23"><NavLink className="nav-text" to="/home/product/brands">Brands</NavLink></Menu.Item>
                         <Menu.Item key="24"><NavLink className="nav-text" to="/home/product/suppliers">Suppliers</NavLink></Menu.Item> */}
-            </SubMenu>
+            {/* </SubMenu> */}
 
           
                    
