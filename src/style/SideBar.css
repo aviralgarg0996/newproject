@@ -20,12 +20,13 @@ justify-content: center;
     width: 222px;
     height: 100vh;
     position: fixed;
-    background-color:#C0C0C0;
+    
   }
   .wrapper {
     /* overflow: auto; */
     overflow-y: scroll;
     height: 100vh;
+    background-color:#C0C0C0;
   }
   .ant-menu-submenu-title{
    font-size: 30px !important; 

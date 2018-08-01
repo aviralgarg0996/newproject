@@ -8,7 +8,7 @@ import { GET_EMPLOYEE_DATA_SUCCESS, GET_EMPLOYEE_DATA_FAILURE, GET_SURVEY_DATA_S
 export function getData(data,url) {
   return axios({
     method: "post",
-    url: url,   
+    url: url+'?limit='+data.limit+'&page='+data.page,   
     data:data  
   });
 }

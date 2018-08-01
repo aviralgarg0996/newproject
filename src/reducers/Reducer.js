@@ -33,6 +33,8 @@ export function Reducer(state=initialState,action){
         break; 
     };
 case GET_SURVEY_DATA_SUCCESS:{
+    console.log("request Success")
+    
     return {
         ...state,
        data:action.data,
@@ -41,6 +43,7 @@ case GET_SURVEY_DATA_SUCCESS:{
     break; 
 }
 case GET_SURVEY_DATA_REQUEST:{
+    console.log("request true")
     return{
         ...state,
         fetching:true

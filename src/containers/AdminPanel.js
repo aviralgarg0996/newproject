@@ -28,7 +28,7 @@ export default class AdminPanel extends Component {
              {/* <Header/>  */}
             
              <Route  path='/admin/user' component={EmployeeRoutes}/>
-             <Route exact path='/admin/survey' component={SurveyDataTable}/>
+             <Route  path='/admin/survey' component={SurveyDataTable}/>
              <Route path='/admin/use' component={Example}/>
             <Route path="/admin/survey/surveydetails" history={this.props.history} component={NavigationRoute}/>
          <div>

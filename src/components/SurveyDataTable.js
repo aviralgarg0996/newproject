@@ -1,6 +1,6 @@
 import { Breadcrumb, Col } from 'antd';
 import React, { Component } from 'react'
-import { Menu, Dropdown, Icon,Upload ,DatePicker} from 'antd';
+import { Menu, Dropdown, Icon,Upload ,DatePicker,Pagination} from 'antd';
 import {Link} from 'react-router-dom';
 import {connect} from "react-redux"
 import axios from "axios";
@@ -29,14 +29,19 @@ class SurveyDataTable extends Component {
       userimage:[],
       toggle:false,
       createdDate:"",
-      createdBy:""
+      createdBy:"",
+      limit:100,
+      page:1,
     }
   }
   componentWillMount() {
-    this.props.onRequestSurveyData()
+    this.props.onRequestSurveyData({limit:this.state.limit,page:this.state.page})
   }
   export() {
     this.dt.exportCSV();
+}
+onPageChange = (pageNumber) =>{
+  this.props.onRequestSurveyData({page:pageNumber,limit:this.state.limit});
 }
 createdByTemp = (rowData, column) => {
   if (rowData.createdBy) {
@@ -89,34 +94,12 @@ createdAt = (rowData, column) => {
         let obj;
         obj = {
           ...data,
-          index: data.surveyStation+data.enumeratorName+(key+1),
-          sno:key+1
+          index: data.surveyStation+data.enumeratorName+((key+1)+((this.state.page-1)*this.state.limit)),
+          sno:((key+1)+((this.state.page-1)*this.state.limit))
         };
         surveyList = surveyList.concat(obj);
       });
     }
-//     let headerGroup = <ColumnGroup>
-//     <Row>
-//         <Column header="S.No" rowSpan={5} />
-//         <Column header="User" colSpan={10}/>
-//         <Column header="Survey Station" rowS
-//         {/* <Column header="Sale Rate" colSpan={4} /> */}
-//     </Row>
-//     <Row>
-//         <Column header="UserName" colSpan={2} />
-//         <Column header="Email" colSpan={2} />
-//         <Column header="Contact No" colSpan={2} />
-//         <Column header="Age" colSpan={2} />
-//         <Column header="Sex" colSpan={2} />
-        
-//     </Row>
-//     {/* <Row>
-//         <Column header="Last Year" />
-//         <Column header="This Year" />
-//         <Column header="Last Year" />
-//         <Column header="This Year" />
-//     </Row> */}
-// </ColumnGroup>;
 let createdByFilter=<InputText
 value={this.state.createdBy}
 placeholder="Enumerator"
@@ -144,37 +127,45 @@ let createdDateFilter =
       })
     }
   } />
+  if (!this.props.state.data.data)
+  {
+    return( <div>
+      <Header1 history={this.props.history}/>
+    <div className="content_container"><div style={{marginLeft:"500px",marginTop:"300px",fontSize:"30px"}}>Loading Data........  </div></div></div>)
+  }
+  else
     return (
         <div>
          <Header1 history={this.props.history}/>
-        <div className="parent_container">
       
              <div className="content_container">
-             <div style={{marginTop:"15px"}}>
              <div id="ButtonSpans" style={{
                 display: 'flex',
                 alignItems: 'flex-end',
                 justifyContent: 'flex-end',
           }}>
-       {/* <span id="selecNos">
+       <span id="selecNos">
       <select id="NoDropDown"
+      style={{marginBottom:"7px"}}
       onChange={(event)=>{
         this.setState({limit:event.target.value})
-        this.props.onRequestData({page:1,limit:event.target.value})
+        this.props.onRequestSurveyData({page:1,limit:event.target.value})
        }}>
-        <option value="10">10</option>
-  <option value="20">20</option>
-  <option value="30">30</option>
-  <option value="40">40</option>
-      </select></span> */}
+        <option value="100">100</option>       
+        <option value="200">200</option>
+  <option value="300">300</option>
+  <option value="400">400</option>
+  <option value="500">500</option>
+  <option value="All">All</option>
+      </select></span>
       <button id="btnCreateUser" onClick={()=>{
 this.export();
       }}>Export CSV</button>
       </div>
       <DataTable columnResizeMode="expand" 
        resizableColumns={true}
-       fetching={this.props.state.fetching}
-        loadingIcon="fas fa-spinner" 
+       loading={this.props.fetching}
+        loadingIcon="pi pi-spinner" 
         value={surveyList}
         onRowClick={(e)=>{
           this.props.history.push({pathname:`/admin/survey/surveydetails`,state:e.data})}
@@ -494,12 +485,23 @@ field="vehicleOwnerShip7.bicycle"
    style={{width:"180px",textAlign:'center'}} /> 
 
 </DataTable>    
+<Pagination
+          defaultCurrent={0}
+          pageSize={this.state.limit}
+          total={
+            this.props.fetching == true
+              ? 1
+              : (this.props.state.data.data &&
+                  this.props.state.data.totalPages) * this.state.limit
+          }
+          onChange={current => {
+            this.onPageChange(current), this.setState({ page: current });
+          }}
+        />
 </div>
              </div>
-         <div>
-           </div> 
-      </div>
-      </div>
+    
+   
        
     )
   }
