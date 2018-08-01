@@ -49,6 +49,14 @@ createdByTemp = (rowData, column) => {
   }
   
 }
+ itemRender=(current, type, originalElement)=>{
+  if (type === 'prev') {
+    return <a>Previous</a>;
+  } if (type === 'next') {
+    return <a>Next</a>;
+  }
+  return originalElement;
+}
 travelTime=(rowData,column)=>{
   return <div>{rowData.commuteTrip.opinionTrasport}</div>
 }
@@ -156,7 +164,6 @@ let createdDateFilter =
   <option value="300">300</option>
   <option value="400">400</option>
   <option value="500">500</option>
-  <option value="All">All</option>
       </select></span>
       <button id="btnCreateUser" onClick={()=>{
 this.export();
@@ -486,8 +493,10 @@ field="vehicleOwnerShip7.bicycle"
 
 </DataTable>    
 <Pagination
-          defaultCurrent={0}
+           defaultCurrent={1}
           pageSize={this.state.limit}
+          // itemRender={this.itemRender}
+          showQuickJumper
           total={
             this.props.fetching == true
               ? 1
