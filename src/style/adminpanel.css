@@ -1,5 +1,5 @@
 .content_container {
-    width: calc(100vw - 250px);
+    width: calc(100vw - 350px);
     height: calc(100vh - 135px);
     background-color: #F3F4F8;
     position: fixed;

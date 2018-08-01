@@ -68,7 +68,7 @@ createdAt = (rowData, column) => {
       });
     }
     return (
-        <div style={{marginTop:"15px"}}>
+        <div className="EmployeeTableContainer" style={{marginTop:"15px",marginRight:"15px"}}>
           <div id="ButtonSpans" style={{
                 display: 'flex',
                 alignItems: 'flex-end',
