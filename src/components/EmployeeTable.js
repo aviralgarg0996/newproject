@@ -68,7 +68,7 @@ createdAt = (rowData, column) => {
       });
     }
     return (
-        <div style={{marginTop:"15px"}}>
+        <div className="EmployeeTableContainer" style={{marginTop:"15px",marginRight:"15px"}}>
           <div id="ButtonSpans" style={{
                 display: 'flex',
                 alignItems: 'flex-end',
@@ -96,6 +96,7 @@ this.export();
               loading={this.props.fetching}
                loadingIcon="fas fa-spinner" 
                ref={(el)=>{this.dt=el;}}
+               scrollHeight={"51vh"}
                value={employeelist}
                 scrollable={true}>
         <Column field="index"
@@ -138,6 +139,11 @@ this.export();
          body={this.createdAt}
           style={{width:"170px",textAlign:'center'}} className='CreatedDate'/>  
         
+        <Column field="surveyStation" 
+        header="Survey Station" 
+         filter={true} 
+          style={{width:"170px",textAlign:'center'}} className='surveyStation'/> 
+
       </DataTable> 
    </div>
     )

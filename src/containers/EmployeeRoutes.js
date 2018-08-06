@@ -18,7 +18,7 @@ export default class EmployeeRoutes extends Component {
   render() {
     return (
      <div>
-         <Header/>
+         <Header history={this.props.history}/>
         <div className="parent_container">
         
        

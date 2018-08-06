@@ -8,13 +8,14 @@ import { GET_EMPLOYEE_DATA_SUCCESS, GET_EMPLOYEE_DATA_FAILURE, GET_SURVEY_DATA_S
 export function getData(data,url) {
   return axios({
     method: "post",
-    url: url,   
+    url: url+'?limit='+data.limit+'&page='+data.page,   
     data:data  
   });
 }
   
 // worker saga: makes the api call when watcher saga sees the action
 export function* SurveyDataSaga(action) {
+  console.log("in survey saga")
   try {
     const response = yield call(getData,action.data,`${basepath}survey/getSurvey`);
     const data = response.data;

@@ -1,6 +1,6 @@
 import { Breadcrumb, Col } from 'antd';
 import React, { Component } from 'react'
-import { Menu, Dropdown, Icon,Upload ,DatePicker} from 'antd';
+import { Menu, Dropdown, Icon,Upload ,DatePicker,Pagination} from 'antd';
 import {Link} from 'react-router-dom';
 import {connect} from "react-redux"
 import axios from "axios";
@@ -28,20 +28,34 @@ class SurveyDataTable extends Component {
     this.state={
       userimage:[],
       toggle:false,
-      createdDate:""
+      createdDate:"",
+      createdBy:"",
+      limit:100,
+      page:1,
     }
   }
   componentWillMount() {
-    this.props.onRequestSurveyData()
+    this.props.onRequestSurveyData({limit:this.state.limit,page:this.state.page})
   }
   export() {
     this.dt.exportCSV();
+}
+onPageChange = (pageNumber) =>{
+  this.props.onRequestSurveyData({page:pageNumber,limit:this.state.limit});
 }
 createdByTemp = (rowData, column) => {
   if (rowData.createdBy) {
     return <div>{rowData.createdBy.name}</div>;
   }
   
+}
+ itemRender=(current, type, originalElement)=>{
+  if (type === 'prev') {
+    return <a>Previous</a>;
+  } if (type === 'next') {
+    return <a>Next</a>;
+  }
+  return originalElement;
 }
 travelTime=(rowData,column)=>{
   return <div>{rowData.commuteTrip.opinionTrasport}</div>
@@ -55,7 +69,6 @@ comfort=(rowData,column)=>{
 safety=(rowData,column)=>{
   return <div>{rowData.commuteTrip3.opinionSafety}</div>
 }
-
  DateFormat =(date)=>{
   if(date==undefined)
   date="2018-05-07T09:54:38+00:00";
@@ -69,7 +82,6 @@ safety=(rowData,column)=>{
    TimeFormat=(date)=>{
     let res = date.split("T");
     let time= res[1].split(".");
-    console.log(time);
     let datee=new Date(date);
     return datee.toLocaleTimeString();
   }
@@ -90,35 +102,21 @@ createdAt = (rowData, column) => {
         let obj;
         obj = {
           ...data,
-          index: data.surveyStation+data.enumeratorName+(key+1),
-          sno:key+1
+          index: data.surveyStation+data.enumeratorName+((key+1)+((this.state.page-1)*this.state.limit)),
+          sno:((key+1)+((this.state.page-1)*this.state.limit))
         };
         surveyList = surveyList.concat(obj);
       });
     }
-//     let headerGroup = <ColumnGroup>
-//     <Row>
-//         <Column header="S.No" rowSpan={5} />
-//         <Column header="User" colSpan={10}/>
-//         <Column header="Survey Station" rowS
-//         {/* <Column header="Sale Rate" colSpan={4} /> */}
-//     </Row>
-//     <Row>
-//         <Column header="UserName" colSpan={2} />
-//         <Column header="Email" colSpan={2} />
-//         <Column header="Contact No" colSpan={2} />
-//         <Column header="Age" colSpan={2} />
-//         <Column header="Sex" colSpan={2} />
-        
-//     </Row>
-//     {/* <Row>
-//         <Column header="Last Year" />
-//         <Column header="This Year" />
-//         <Column header="Last Year" />
-//         <Column header="This Year" />
-//     </Row> */}
-// </ColumnGroup>;
-
+let createdByFilter=<InputText
+value={this.state.createdBy}
+placeholder="Enumerator"
+onChange={(e) => {this.setState({createdBy: e.target.value})
+this.props.onRequestSurveyData({
+  page:1,limit:this.state.limit,createdBy:e.target.value
+})
+}}
+/>
 
 let createdDateFilter =
 <DatePicker
@@ -137,39 +135,47 @@ let createdDateFilter =
       })
     }
   } />
+  if (!this.props.state.data.data)
+  {
+    return( <div>
+      <Header1 history={this.props.history}/>
+    <div className="content_container"><div style={{marginLeft:"500px",marginTop:"300px",fontSize:"30px"}}>Loading Data........  </div></div></div>)
+  }
+  else
     return (
         <div>
-         <Header1/>
-        <div className="parent_container">
+         <Header1 history={this.props.history}/>
       
              <div className="content_container">
-             <div style={{marginTop:"15px"}}>
              <div id="ButtonSpans" style={{
                 display: 'flex',
                 alignItems: 'flex-end',
                 justifyContent: 'flex-end',
           }}>
-       {/* <span id="selecNos">
+       <span id="selecNos">
       <select id="NoDropDown"
+      style={{marginBottom:"7px"}}
       onChange={(event)=>{
         this.setState({limit:event.target.value})
-        this.props.onRequestData({page:1,limit:event.target.value})
+        this.props.onRequestSurveyData({page:1,limit:event.target.value})
        }}>
-        <option value="10">10</option>
-  <option value="20">20</option>
-  <option value="30">30</option>
-  <option value="40">40</option>
-      </select></span> */}
+        <option value="100">100</option>       
+        <option value="200">200</option>
+  <option value="300">300</option>
+  <option value="400">400</option>
+  <option value="500">500</option>
+      </select></span>
       <button id="btnCreateUser" onClick={()=>{
 this.export();
       }}>Export CSV</button>
       </div>
       <DataTable columnResizeMode="expand" 
        resizableColumns={true}
-       fetching={this.props.fetching}
-        loadingIcon="fas fa-spinner" 
+       loading={this.props.fetching}
+        loadingIcon="pi pi-spinner" 
         value={surveyList}
-        onRowClick={(e)=>this.props.history.push({pathname:`/admin/survey/surveydetails`,state:e.data})
+        onRowClick={(e)=>{
+          this.props.history.push({pathname:`/admin/survey/surveydetails`,state:e.data})}
       }
         scrollHeight={"51vh"}
         ref={(el)=>{this.dt=el;}}
@@ -186,7 +192,7 @@ this.export();
  style={{width:"130px",textAlign:"right",textAlign:'center'}}/>
 
 <Column field="userName" 
-header="UserName" 
+header="InterViewee" 
 filter={true}
  
 style={{width:"110px"}} 
@@ -220,12 +226,15 @@ filter={true}
    style={{width:"120px",textAlign:'center'}} />  
  
  <Column  
- header="Created By" 
+ field="createdBy.name"
+ header="Enumerator" 
   filter={true} 
+  filterElement={createdByFilter}
   body={this.createdByTemp}
-   style={{width:"120px",textAlign:'center'}} />   
+   style={{width:"120px",textAlign:'center',whiteSpace:'initial'}} />   
 
  <Column  
+ field="createdAt"
  header="Created At" 
   filter={true} 
   filterElement={createdDateFilter}
@@ -234,24 +243,43 @@ filter={true}
    
 
 <Column  
- header="Origin" 
+field="origin.latitude"
+ header="Origin Latitude" 
   filter={true} 
-  
   body={(rowData,column)=>{
-    return<div>{rowData.origin.latitude} , {rowData.origin.longitude}</div>
+    return<div>{rowData.origin.latitude} </div>
   }}
-   style={{width:"200px",textAlign:'center'}} />  
+   style={{width:"150px",textAlign:'center'}} />  
 
    <Column  
- header="Destination" 
+field="origin.longitude"
+ header="Origin Longitude" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return<div> {rowData.origin.longitude}</div>
+  }}
+   style={{width:"150px",textAlign:'center'}} />  
+
+   <Column  
+   field="destination.latitude1"
+ header="Destination Latitude" 
   filter={true}
-   
   body={(rowData,column)=>{
-    return <div>{rowData.destination.latitude1?"30.767565":rowData.destination.latitude1} , {rowData.destination.longitude1?"70.643333":rowData.destination.longitude1}</div>
+    return <div>{rowData.destination.latitude1}</div>
   }}
-   style={{width:"200px",textAlign:'center'}} />  
+   style={{width:"150px",textAlign:'center'}} />  
+<Column  
+   field="destination.longitude1"
+ header="Destination Latitude" 
+  filter={true}
+  body={(rowData,column)=>{
+    return <div> {rowData.destination.longitude1}</div>
+  }}
+   style={{width:"150px",textAlign:'center'}} />  
+
 
    <Column  
+   field="regularTrip3.distance"
  header="Distance" 
   filter={true}
    
@@ -261,6 +289,7 @@ filter={true}
    style={{width:"120px",textAlign:'center'}} />  
 
 <Column  
+field="regularTrip3.timeTaken"
  header="Time Taken" 
   filter={true}
    
@@ -268,7 +297,9 @@ filter={true}
     return <div>{rowData.regularTrip3.timeTaken}&nbsp; min</div>
   }}
    style={{width:"120px",textAlign:'center'}} />  
-<Column  
+
+<Column
+field="regularTrip3.startTime"  
  header="Start Time" 
   filter={true} 
   body={(rowData,column)=>{
@@ -279,33 +310,39 @@ filter={true}
    <Column field="purposeTrip4" 
  header="Purpose Of Trip" 
   filter={true}
-   
    style={{width:"130px",textAlign:'center'}} />  
 
  
    <Column  
+   field="commuteTrip.opinionTrasport"
  header="Travel Time" 
   filter={true} 
   body={this.travelTime}
    style={{width:"170px",textAlign:'center'}} /> 
 
     <Column  
+    field="commuteTrip1.opinionCost"
  header="Cost" 
   filter={true} 
   body={this.cost}
    style={{width:"170px",textAlign:'center'}} /> 
+
     <Column  
+    field="commuteTrip3.opinionSafety"
  header="Safety" 
   filter={true} 
   body={this.safety}
    style={{width:"170px",textAlign:'center'}} /> 
+
     <Column  
+    field="commuteTrip2.opinionComfort"
  header="Comfort" 
   filter={true} 
   body={this.comfort}
    style={{width:"170px",textAlign:'center'}} />   
  
  <Column  
+ field="vehicleOwnerShip7.cars"
  header="No of cars" 
   filter={true} 
   body={(rowData,column)=>{
@@ -313,6 +350,7 @@ filter={true}
   }}
    style={{width:"120px",textAlign:'center'}} />  
 <Column  
+field="vehicleOwnerShip7.twoWheeler"
  header="No Of Two Wheelers" 
   filter={true} 
   body={(rowData,column)=>{
@@ -321,6 +359,7 @@ filter={true}
    style={{width:"140px",textAlign:'center'}} />  
 
 <Column  
+field="vehicleOwnerShip7.bicycle"
  header="No Of Bicycle" 
   filter={true} 
   body={(rowData,column)=>{
@@ -329,6 +368,7 @@ filter={true}
    style={{width:"120px",textAlign:'center'}} />  
   
   <Column  
+  field="modeOfTravel.travelTrasport"
  header="Travel Mode" 
   filter={true} 
   body={(rowData,column)=>{
@@ -359,27 +399,131 @@ filter={true}
   filter={true} 
    style={{width:"130px",textAlign:'center'}} />  
 
+<Column field="reasonForLeavingMetro" 
+ header="Reason For Leaving Metro" 
+  filter={true} 
+   style={{width:"180px",textAlign:'center'}} />  
+
+<Column field="stations" 
+ header="When You Left Metro?" 
+  filter={true} 
+   style={{width:"180px",textAlign:'center'}} />  
+
+<Column field="reasonNoMetro2.notRoute" 
+ header="Route doesn't Match?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.notRoute==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+
+   <Column field="reasonNoMetro2.lackOfService" 
+ header="Lack Of Services?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.lackOfService==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+   <Column field="reasonNoMetro2.travelTimeHigh" 
+ header="High Travel time?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.travelTimeHigh==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+ <Column field="reasonNoMetro2.unaffordableFare" 
+ header="Metro Fares Unaffordable?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.unaffordableFare==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+ <Column field="reasonNoMetro2.highReachingCost" 
+ header="Reaching Cost to Metro Station?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.highReachingCost==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+    <Column field="reasonNoMetro2.modeChanges" 
+ header="High Number of Transfers?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.modeChanges==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+ <Column field="reasonNoMetro2.crowded" 
+ header="Crwoded Metro coaches?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.crowded==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+    <Column field="reasonNoMetro2.seatAvailable" 
+ header="Seat Availability?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.seatAvailable==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+    <Column field="reasonNoMetro2.security" 
+ header="Safety & Security?" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.security==false?"No":"Yes"}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
+
+
+ <Column field="reasonNoMetro2.other" 
+ header="Others" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.reasonNoMetro2.others}</div>
+  }}
+   style={{width:"180px",textAlign:'center'}} /> 
 
 </DataTable>    
+<Pagination
+           defaultCurrent={1}
+          pageSize={this.state.limit}
+          // itemRender={this.itemRender}
+          showQuickJumper
+          total={
+            this.props.fetching == true
+              ? 1
+              : (this.props.state.data.data &&
+                  this.props.state.data.totalPages) * this.state.limit
+          }
+          onChange={current => {
+            this.onPageChange(current), this.setState({ page: current });
+          }}
+        />
 </div>
              </div>
-         <div>
-           </div> 
-      </div>
-      </div>
+    
+   
        
     )
   }
 }
 
 const mapStateToProps = state => {
-  console.log("datainsurvey",state)
   return {
     state: state,
     fetching: state.fetching,
   };
 };
 const mapDispatchToProps = dispatch => {
+  console.log("dispatched from dataTable")
   return {
     onRequestSurveyData: data =>
       dispatch({ type: GET_SURVEY_DATA_REQUEST, data }),
