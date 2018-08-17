@@ -491,6 +491,15 @@ field="vehicleOwnerShip7.bicycle"
   }}
    style={{width:"180px",textAlign:'center'}} /> 
 
+<Column field="parkingFees" 
+ header="Parking fees" 
+  filter={true} 
+  body={(rowData,column)=>{
+    return <div>{rowData.parkingFees}</div>
+  }}
+   style={{width:"150px",textAlign:'center'}} /> 
+
+
 </DataTable>    
 <Pagination
            defaultCurrent={1}
